@@ -39,6 +39,12 @@ fun Order() {
     orderList.add(Aliment("Fries", 9.99, "\uD83C\uDF5F", 1))
     orderList.add(Aliment("Cake", 9.99, "\uD83C\uDF70", 1))
 
+    var totalPrice = 0.0
+
+    orderList.forEach {
+        totalPrice += it.price
+    }
+
 
     for(i in 0 until orderList.size step 2) {
 
@@ -95,5 +101,27 @@ fun Order() {
     }
 
     }
+
+    Row (
+        modifier = Modifier
+            .fillMaxWidth(),
+        horizontalArrangement = Arrangement.Center
+    ){
+        Column (
+            modifier = Modifier
+                .padding(5.dp)
+                .fillMaxWidth(0.5f)
+                .height(100.dp)
+                .shadow(10.dp, shape = RoundedCornerShape(20.dp), true)
+                .background(Color.White, shape = RoundedCornerShape(20.dp))
+                .alpha(0.9f)
+                .clip(RoundedCornerShape(20.dp)),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ){
+            Text(text = "Total : $totalPrice$", fontFamily = font, fontSize = 20.sp, modifier = Modifier.padding(start = 10.dp))
+        }
+    }
+
 
 }
